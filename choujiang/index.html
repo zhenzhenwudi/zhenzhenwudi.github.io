@@ -33,7 +33,17 @@ $(document).ready(function(){
 	 "20M免费流量包", "20闪币 ","30M免费流量包", "100M免费流量包", "2闪币"];
 	turnplate.colors = ["#FFF4D6","#FFFFFF",
 	 "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
-
+	drawRouletteWheel();
+	$('#wheelcanvas').rotate({
+		angle:0,
+		animateTo:270+1800,
+		duration:300,
+		callback:function (){
+			$('#wheelcanvas').stopRotate();
+			//layer.close(loadingLayer);
+			alert("start");
+		}
+	});
 
 	var rotateTimeOut = function (){
 		$('#wheelcanvas').rotate({
@@ -108,16 +118,7 @@ $(document).ready(function(){
 		console.log(item);
 	});
 	
-	drawRouletteWheel();
-	$('#wheelcanvas').rotate({
-		angle:0,
-		animateTo:180+1800,
-		duration:300,
-		callback:function (){
-			$('#wheelcanvas').stopRotate();
-			//layer.close(loadingLayer);
-		}
-	});
+
 });
 
 function rnd(n, m){
