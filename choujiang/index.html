@@ -107,8 +107,6 @@ $(document).ready(function(){
 		} */
 		console.log(item);
 	});
-	
-	drawRouletteWheel();
 });
 
 function rnd(n, m){
@@ -120,7 +118,16 @@ function rnd(n, m){
 
 //页面所有元素加载完毕后执行drawRouletteWheel()方法对转盘进行渲染
 window.onload=function(){
-	//drawRouletteWheel();
+	drawRouletteWheel();
+	$('#wheelcanvas').rotate({
+		angle:0,
+		animateTo:270+1800,
+		duration:300,
+		callback:function (){
+			$('#wheelcanvas').stopRotate();
+			//layer.close(loadingLayer);
+		}
+	});
 };
 
 function drawRouletteWheel() {
@@ -209,7 +216,7 @@ function drawRouletteWheel() {
 	<div class="banner">
 		<div class="turnplate" style="background-image:url(images/turnplate-bg.png);background-size:100% 100%;">
 			<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-			<img class="pointer" src="images/test.jpg"/>
+			<img class="pointer" src="images/turnplate-pointer.png"/>
 		</div>
 	</div>
 </body>
