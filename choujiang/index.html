@@ -161,108 +161,7 @@
 	  }
 	}
 	
-	var rotateTimeOut = function (){
-		$('#wheelcanvas').rotate({
-			angle:0, //起始角度
-			animateTo:2160, // 结束的角度
-			duration:8000, // //转动时间
-			callback:function (){
-				alert('网络超时，请检查您的网络设置！');
-			}
-		});
-	};
-
-	//旋转转盘 item:奖品位置; txt：提示语;
-	var rotateFn = function (item, txt){
-		var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length*2));
-		if(angles<270){
-			angles = 270 - angles;
-		}else{
-			angles = 360 - angles + 270;
-		}
-		$('#wheelcanvas').stopRotate();
-		$('#wheelcanvas').rotate({
-			angle:0,
-			animateTo:angles+1800,
-			duration:8000,
-			callback:function (){
-				turnplate.bRotate = !turnplate.bRotate;
-			  	var contentStr = '<div class="bzm-body" style="margin:10px;">'
-					+'<div class="notprize prize">'
-						+'<img src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/logo.png" alt="">'
-					  	+'<p class="nobold">恭喜您抽中</p>'
-					  	+'<p class="nobold"><span class="golden">'+txt+'</span></p>';
-				if (isLogin) {
-					  	contentStr += '<p class="nobold">已放入您的账户</p>'
-					  	+'<p class="demo" style="margin-top:10px;"><a class="button closediy" href="javascript:void(0);">关闭</a></p>'
-				} else {
-					contentStr += '<p class="nobold">10秒激活大虾来了会员，领取奖品</p>'
-					  	+'<p class="demo" style="margin-top:10px;"><a class="button" href="/to_login?ru=/rotate/exchange">去领取</a></p>'
-				}
-				contentStr+='</div></div>';
-				var pagei = layer.open({
-				    type: 1,
-				    skin: '', //样式类名
-				    style: 'width:90%; height:360px',
-				    closeBtn: true, //不显示关闭按钮
-				    shadeClose: true, //开启遮罩关闭
-				    content:contentStr,
-				    success: function(olayer){
-				    	$(olayer).find('.closediy').on('click',function(){
-				    		layer.close(pagei)
-				    	});
-            		}
-			    });
-				$('#myAwardTip').html('恭喜您抽中：');
-				if (awardType == 1) {
-					$('#myAwardTip').after('<img src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/ticket.png" title="'+txt+'" />');
-				} else {
-					$('#myAwardTip').after('<img src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/card.png" title="'+txt+'" />');
-				}
-				if (isLogin) {
-					$.ajax({
-						url: "/rotate/exchange",
-						type:'POST',
-						dataType:'json',
-						success: function(obj) {
-							$('#toIndex').show();
-						},
-						error: function() {
-							
-						}
-					});
-				} else {
-					$('#toExchange').show();
-				}
-			}
-		});
-	};
 	
-	function openSubscribe() {
-		layer.open({
-		    type: 1,
-		    skin: '', //样式类名
-		    closeBtn: false, //不显示关闭按钮
-		    shift: 2,
-		    shadeClose: false, //开启遮罩关闭
-		    content: '<div class="bzm-body">'
-					+'<div class="notprize prize">'
-						+'<img src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/logo.png" alt="">'
-					  	+'<p>您还没有关注大虾来了!</p>'
-					  	+'<p class="nobold">请长按识别二维码关注大虾来了</p>'
-					  	+'<p class="nobold"><span class="golden">回复抽奖即可参与</span></p>'
-						+'<div class="under">'
-					  		+'<img src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/brcode.jpg" alt="">'
-					  		+'<div class="right">'
-						  		+'<p>关注大虾来了公众号</p>'
-						  		+'<p>参与抽奖获取优惠劵</p>'
-						  		+'<p>有机会领取<span class="golden">免费吃虾卡</span></p>'
-					  		+'</div>'
-					  	+'</div>'
-					  	+'<p class="demo"><a class="button" href="/">去大虾首页</a></p>'
-				  	+'</div></div>'
-		});
-	}
 	
 	var luckyItem = 0;
 	var awardType = 0;
@@ -294,6 +193,7 @@
 			callback:function (){
 				$('#wheelcanvas').stopRotate();
 				layer.close(loadingLayer);
+				alert(1);
 			}
 		});
 	});
