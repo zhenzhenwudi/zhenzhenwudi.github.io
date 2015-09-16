@@ -6,11 +6,87 @@
 <meta name="msapplication-tap-highlight" content="no"/>
 <title>大虾来了</title>
 <script type="text/javascript" src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/js/jquery.min.js"></script>
-<link href="style.css?v=11" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="js/awardRotate.js"></script>
+<link href="style.css?v=1" rel="stylesheet" type="text/css"/>
+<style>
 
-<script type="text/javascript">
-var turnplate={
+.boxcontent {
+	margin:1px 15px 15px 15px;
+	border-radius: 5px;
+	padding: 2px;
+	background-color: #FFF4D6;
+	-webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+.boxyellow{
+	background-color: #FFF4D6;
+}
+.boxwhite{
+	background-color: #ffffff;
+}
+.box {
+	border-radius: 5px;
+	font-size:14px;
+}
+.box .title-red {
+	padding: 4px 5px 0px 10px;
+	background:url(/resources/images/title-bg-red.png) no-repeat 0 0;
+	border-radius: 3px 3px 3px 0;
+	color:#ffffff;
+	height:22px;
+	margin:-1px;
+	/*-moz-text-shadow:0 1px 0 #8d0001;-webkit-text-shadow:0 1px 0 #8d0001;text-shadow:0 1px 0 #8d0001;
+	text-shadow:0px 1px 0 #8d0001;*/
+}
+.box .Detail {
+	color:#E5302F;
+	padding: 15px;
+}
+.pright {
+	float:right;
+}
+
+
+</style>
+</head>
+<body style="background:#e62d2d;overflow-x:hidden;">
+	<div class="banner">
+		<div id="canvasWrapper" class="turnplate" style="background-image:url(http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/turnplate-bg.png);background-size:100% 100%;">
+			<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
+			<img class="pointer" src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/turnplate-pointer.png"/>
+		</div>
+	</div>
+	<div class="boxcontent boxyellow">
+		<div class="box">
+			<div class="title-red"><span>活动说明：</span></div>
+			<div class="Detail">
+				<p>1、每人可以抽奖 2 次，百分百中奖</p>
+				<p>2、为了便于领奖，抽奖前需要关注大虾来了公众号</p>
+				<p>3、本活动最终解释权归大虾来了所有</p>
+			</div>
+		</div>
+	</div>
+	<div class="boxcontent boxyellow">
+		<div class="box">
+			<div class="title-red"><span>我的奖品：</span></div>
+			<div class="Detail">
+				<p>
+					<span id="myAwardTip">点“开始抽奖”试试手气吧</span>
+					<span class="demo" id="toExchange" style="display:none;"><a class="button" href="/to_login?ru=/rotate/exchange">马上领取</a></span>
+					<span class="demo" id="toIndex" style="display:none;"><a class="button" href="/">大虾首页</a></span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/js/layer.m/layer.m.js"></script>
+	<script type="text/javascript" src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/js/awardRotate.js"></script>
+	<script type="text/javascript">
+	
+	var isLogin = 0;
+	var isSubscribe = 1;
+	
+	var turnplate={
 		restaraunts:[],				//大转盘奖品名称
 		colors:[],					//大转盘奖品区块对应背景颜色
 		outsideRadius:192,			//大转盘外圆的半径
@@ -18,8 +94,9 @@ var turnplate={
 		insideRadius:68,			//大转盘内圆的半径
 		startAngle:0,				//开始角度
 		bRotate:false				//false:停止;ture:旋转
-};
-function drawRouletteWheel() {
+	};
+	
+	function drawRouletteWheel() {
 	  var canvas = document.getElementById("wheelcanvas");
 	  if (canvas.getContext) {
 		  //根据奖品个数计算圆周角度
@@ -83,44 +160,38 @@ function drawRouletteWheel() {
 		  }
 	  }
 	}
-$(document).ready(function(){
-	//动态添加大转盘的奖品与奖品区域背景颜色
-	//turnplate.restaraunts = ["50M免费流量包", "10闪币", "谢谢参与", "5闪币", "10M免费流量包",
-	 //"20M免费流量包", "20闪币 ","30M免费流量包", "100M免费流量包", "2闪币"];
-	//turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF",
-	 //"#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
-	 
-	 turnplate.restaraunts = ["10M免费流量包",
-	 "20M免费流量包", "20闪币 ","30M免费流量包", "100M免费流量包", "2闪币"];
-	turnplate.colors = ["#FFF4D6","#FFFFFF",
-	 "#FFF4D6", "#FFFFFF","#FFF4D6", "#FFFFFF"];
-	drawRouletteWheel();
+
 	
-	$('#wheelcanvas').rotate({
-		angle:0,
-		animateTo:270+1800,
-		duration:300,
-		callback:function (){
-			$('#wheelcanvas').stopRotate();
-			//layer.close(loadingLayer);
-			alert(110);
+	
+	var luckyItem = 0;
+	var awardType = 0;
+	
+	$(function(){
+			turnplate.restaraunts.push('免费吃虾卡')
+			turnplate.restaraunts.push('10元代金卷')
+			turnplate.restaraunts.push('20元代金卷')
+			turnplate.restaraunts.push('30元代金卷')
+		for (var i=0; i<4;i++) {
+			if (i%2==0){
+				turnplate.colors.push('#FFF4D6');
+			} else {
+				turnplate.colors.push('#FFFFFF');
+			}
 		}
+		
+		drawRouletteWheel();
+		
+		$('#wheelcanvas').rotate({
+			angle:0,
+			animateTo:270+1800,
+			duration:300,
+			callback:function (){
+				$('#wheelcanvas').stopRotate();
+				//layer.close(loadingLayer);
+			}
+		});
+			
 	});
-	
-
-});
-
-
-
-
 </script>
-</head>
-<body style="background:#e62d2d;overflow-x:hidden;">
-	<div class="banner">
-		<div id="canvasWrapper" class="turnplate" style="background-image:url(http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/turnplate-bg.png);background-size:100% 100%;">
-			<canvas class="item" id="wheelcanvas" width="422px" height="422px"></canvas>
-			<img class="pointer" src="http://7wy444.com2.z0.glb.qiniucdn.com/resources/images/turnplate-pointer.png"/>
-		</div>
-	</div>
 </body>
 </html>
