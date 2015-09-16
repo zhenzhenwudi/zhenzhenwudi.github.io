@@ -8,7 +8,79 @@ a:hover{color:#c00; text-decoration:none;}
 .clear{clear:both;}
 
 /* 大转盘样式 */
-.banner{display:block;width:95%;margin-left:auto;margin-right:auto;margin-bottom: 20px;}
+.banner{display:block;width:95%;margin-left:auto;margin-right:auto;margin-bottom: 40px;margin-top:20px}
 .banner .turnplate{display:block;width:100%;position:relative;}
-.banner .turnplate canvas.item{width:100%;}
-.banner .turnplate img.pointer{position:absolute;width:31.5%;height:42.5%;left:34.6%;top:23%;}
+.banner .turnplate canvas.item{width:100%;z-index:1;}
+.banner .turnplate img.pointer{position:absolute;width:31.5%;height:42.5%;left:34.6%;top:23%;z-index:10000;}
+
+
+
+.bzm-header,
+.bzm-body,
+.bzm-footer {
+   padding: 7px 0 10px 0;
+  text-align: center;
+  color: #59676b;
+}
+/*notprize*/
+.bzm-body .notprize img{
+	width: 34%;
+}
+.bzm-body .notprize p{
+  	margin: 2% auto;
+  	color: #000000;
+  	font-size: 14px;
+}
+
+.bzm-body .notprize .under{
+	width: 92%;
+  	margin: 2% auto;
+  	overflow: hidden;
+}
+.bzm-body .notprize .under img{
+	width:37%;
+	float: left;
+	margin-left: 2%;
+}
+.bzm-body .notprize .under .right p{
+	width: 60%;
+	float: right;
+	text-align: center;
+	margin-bottom: 0%;
+	font-size: 12px;
+	margin-bottom: 2;
+	color:#666666;
+}
+.bzm-body .notprize .under .right .golden{
+	color:#c39043;
+	font-size: 14px;
+	font-weight: bold;
+}
+/*prize*/
+.bzm-body .prize p{
+	font-size: 20px;
+	color:#000;
+	font-weight: bold;
+	margin: 2% auto;
+}
+.bzm-body .prize .f12px{
+	font-size: 12px;
+	color:#a0a0a0;
+	font-weight: normal;
+}
+.bzm-body .prize p span{
+	color:#58aab1;
+}
+.bzm-body .prize .under .right p{
+	font-weight: normal;
+}
+/*room*/
+.bzm-body .prize .nobold{
+	font-weight: normal;
+	font-size: 18px;
+}
+.bzm-body .prize .nobold .golden{
+	color:#c39043;
+}
+.demo a, .button{display:inline-block; vertical-align:top; margin:0 5px 10px 0; height:36px; line-height:36px; border-radius:3px; padding:0 30px; background-color:#FF4351; color:#fff; border:none;}
+.demo a:hover, .button:hover{background-color:#FEAE1B;}
