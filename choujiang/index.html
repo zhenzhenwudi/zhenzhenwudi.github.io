@@ -111,7 +111,7 @@ $(document).ready(function(){
 	drawRouletteWheel();
 	$('#wheelcanvas').rotate({
 		angle:0,
-		animateTo:270+1800,
+		animateTo:180+1800,
 		duration:300,
 		callback:function (){
 			$('#wheelcanvas').stopRotate();
@@ -126,11 +126,6 @@ function rnd(n, m){
 
 }
 
-
-//页面所有元素加载完毕后执行drawRouletteWheel()方法对转盘进行渲染
-window.onload=function(){
-
-};
 
 function drawRouletteWheel() {
   var canvas = document.getElementById("wheelcanvas");
