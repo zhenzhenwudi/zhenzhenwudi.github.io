@@ -23,11 +23,7 @@ var turnplate={
 };
 
 $(document).ready(function(){
-	var loadingLayer = layer.open({
-        type: 2,
-        time: 10,
-        content: '转盘加载中…'
-    });
+
 	//动态添加大转盘的奖品与奖品区域背景颜色
 	//turnplate.restaraunts = ["50M免费流量包", "10闪币", "谢谢参与", "5闪币", "10M免费流量包",
 	 //"20M免费流量包", "20闪币 ","30M免费流量包", "100M免费流量包", "2闪币"];
@@ -123,6 +119,11 @@ function rnd(n, m){
 
 //页面所有元素加载完毕后执行drawRouletteWheel()方法对转盘进行渲染
 window.onload=function(){
+	var loadingLayer = layer.open({
+        type: 2,
+        time: 10,
+        content: '转盘加载中…'
+    });
 	drawRouletteWheel();
 	$('#wheelcanvas').rotate({
 		angle:0,
